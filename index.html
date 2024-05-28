@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Memories</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #feaa6e; /* أخضر فاتح */
+        }
+        h1 {
+            color: #000000; /* أخضر غامق */
+        }
+        .clickable-image {
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+            width: 300px; /* عرض الصورة */
+        }
+        .clickable-image:hover {
+            transform: scale(1.05);
+        }
+        .shimmer {
+            animation: shimmer 1s forwards;
+        }
+        @keyframes shimmer {
+            0% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.5);
+            }
+            100% {
+                filter: brightness(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Sweet Memories..</h1>
+    <img id="mainImage" class="clickable-image" src="envelope-closed.jpg" alt="صورة قابلة للنقر">
+    <audio id="clickSound" src="click-sound.mp3"></audio>
+    <script>
+        document.getElementById('mainImage').addEventListener('click', function() {
+            const image = this;
+            const audio = document.getElementById('clickSound');
+            image.src = image.src.endsWith('envelope-closed.jpg') ? 'envelope-open.jpg' : 'envelope-closed.jpg';
+            image.classList.add('shimmer');
+            audio.play();
+            setTimeout(() => {
+                image.classList.remove('shimmer');
+            }, 1000); // إزالة تأثير اللمعان بعد انتهاء الأنميشن
+        });
+    </script>
+</body>
+</html>
